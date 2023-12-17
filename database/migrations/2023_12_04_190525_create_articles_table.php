@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('image');
             $table->boolean('status')->default(0);
             $table->foreignId('author_id')->constrained('users');
-            $table->foreignId('category_id')->constrained('categories');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,7 +31,7 @@ return new class extends Migration
     {
         Schema::table('articles', function (Blueprint $table) {
             $table->dropForeign(['author_id']);
-            $table->foreignId(['category_id']);
+            $table->dropForeign(['category_id']);
             $table->dropIfExists();
         });
     }
